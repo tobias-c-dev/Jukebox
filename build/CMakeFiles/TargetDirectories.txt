@@ -1,3 +1,0 @@
-/home/tobias/dev/Jukebox/build/CMakeFiles/Jukebox.dir
-/home/tobias/dev/Jukebox/build/CMakeFiles/edit_cache.dir
-/home/tobias/dev/Jukebox/build/CMakeFiles/rebuild_cache.dir
