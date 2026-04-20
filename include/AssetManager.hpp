@@ -1,7 +1,7 @@
 #pragma once
 
 #include <raylib.h>
-#include <unordered_map.
+#include <unordered_map>
 #include <string>
 #include <stdexcept>
 
@@ -21,7 +21,8 @@ class AssetManager {
 
         // Music  - loaded in when needed as .ogg files for music themes
         void loadMusic(const std::string& name, const std::string& path);
-        Sound& getMusic(const std::string& name);
+        Music& getMusic(const std::string& name);
+        void updateMusic();
 
         void unloadAll();
     
@@ -30,4 +31,4 @@ class AssetManager {
         std::unordered_map<std::string, Sound>      sounds;
         std::unordered_map<std::string, Music>      music;
 
-}
+};

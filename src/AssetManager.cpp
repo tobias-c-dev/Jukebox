@@ -7,7 +7,7 @@ AssetManager::~AssetManager() {
 // Textures
 void AssetManager::loadTexture(const std::string& name, const std::string& path) {
     if (textures.contains(name)) return;
-    Texture2D t = loadTexture(path.c_str());
+    Texture2D t = LoadTexture(path.c_str());
     if (t.id == 0) {
         throw std::runtime_error("Failed to load texture: " + path);
     }
@@ -16,7 +16,7 @@ void AssetManager::loadTexture(const std::string& name, const std::string& path)
 
 Texture2D& AssetManager::getTexture(const std::string& name) {
     auto it = textures.find(name);
-    if (it == texture.end()) {
+    if (it == textures.end()) {
         throw std::runtime_error("Texture not found: " + name);
     }
     return it->second;
@@ -27,7 +27,7 @@ Texture2D& AssetManager::getTexture(const std::string& name) {
 void AssetManager::loadSound(const std::string& name, const std::string& path) {
     if (sounds.contains(name)) return;
     Sound s = LoadSound(path.c_str());
-    if (s.stream.buffer == nullptr) {
+    if (!IsSoundValid(s)) {
         throw std::runtime_error("Failed to load sound: " + path);
     }
     sounds[name] = s;
@@ -46,7 +46,7 @@ Sound& AssetManager::getSound(const std::string& name) {
 void AssetManager::loadMusic(const std::string& name, const std::string& path) {
     if (music.contains(name)) return;
     Music m = LoadMusicStream(path.c_str());
-    if (m.stream.buffer == nullptr) {
+    if (!IsMusicValid(m)) {
         throw std::runtime_error("Failed to load music: " + path);
     }
     music[name] = m;
@@ -60,6 +60,9 @@ Music& AssetManager::getMusic(const std::string& name) {
     return it->second;
 }
 
+void AssetManager::updateMusic() {
+    for (auto& [name, m] : music) UpdateMusicStream(m);
+}
 
 // Unloading
 void AssetManager::unloadAll() {
