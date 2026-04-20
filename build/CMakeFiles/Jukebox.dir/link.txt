@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/Jukebox.dir/src/main.cpp.o -o Jukebox  -Wl,-rpath,/usr/local/lib /usr/local/lib/libraylib.so.6.0.0 -lm 
